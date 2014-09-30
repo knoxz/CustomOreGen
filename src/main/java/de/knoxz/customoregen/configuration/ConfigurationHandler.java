@@ -26,7 +26,7 @@ public class ConfigurationHandler {
         }
         try {
             configuration.load();
-            LogHelper.info("LOAD");
+            LogHelper.info("LOAD JSON CFG");
             configValue = configuration.get(Configuration.CATEGORY_GENERAL, "JsonFileName", "config/oreGen.json", "This is the jsonFilePath").getString();
             LogHelper.debug(configValue);
             repl = new ArrayList<Replacer>();

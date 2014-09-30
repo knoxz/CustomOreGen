@@ -2,7 +2,6 @@ package de.knoxz.customoregen;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import de.knoxz.customoregen.configuration.ConfigurationHandler;
-import de.knoxz.customoregen.utility.LogHelper;
 import de.knoxz.customoregen.utility.Replacer;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -16,13 +15,7 @@ public class CustomOreGenerator implements IWorldGenerator {
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         for (Replacer repl : ConfigurationHandler.repl) {
-            LogHelper.info("WE ARE DIM:" + world.provider.dimensionId);
-            LogHelper.info("Checking DIM: " + repl.dimension);
             if (world.provider.dimensionId == repl.dimension)
-                LogHelper.info("ADDING ORE");
-            LogHelper.info("Dimension" + repl.dimension);
-            LogHelper.info("Ore to add ID: " + repl.oreid);
-            LogHelper.info("Ore to remove ID: " + repl.replaceid);
             generateOres(repl, random, chunkX * 16, chunkZ * 16, world);
         }
 
