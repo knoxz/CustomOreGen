@@ -1,4 +1,4 @@
-CustomOreGen
+OreGenAnything
 ============
 
-Adding Custom Ores to Custom Dimensions
+Adding Custom Ores/Blocks to Custom Dimensions

@@ -1,8 +1,8 @@
-package de.knoxz.customoregen;
+package de.knoxz.oregenanything;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import de.knoxz.customoregen.configuration.ConfigurationHandler;
-import de.knoxz.customoregen.utility.Replacer;
+import de.knoxz.oregenanything.configuration.ConfigurationHandler;
+import de.knoxz.oregenanything.utility.Replacer;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -10,7 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
 
-public class CustomOreGenerator implements IWorldGenerator {
+public class OreGenAnythingGenerator implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -23,7 +23,7 @@ public class CustomOreGenerator implements IWorldGenerator {
     }
 
     private void generateOres(Replacer replacer, Random random, int x, int z, World world) {
-        addOreSpawn(Block.getBlockFromName(replacer.oreid), Block.getBlockFromName(replacer.replaceid), world, random, x, z, 10, 15, 5, 0, 128);
+        addOreSpawn(Block.getBlockFromName(replacer.oreid), Block.getBlockFromName(replacer.replaceid), world, random, x, z, replacer.minVeinSize, replacer.maxVeinSize, replacer.chanceToSpawn, replacer.minY, replacer.maxY, replacer.meta);
     }
 
     /**
@@ -44,8 +44,13 @@ public class CustomOreGenerator implements IWorldGenerator {
      * @param maxY           highest point to spawn
      */
 
-    public void addOreSpawn(Block block, Block remove, World world, Random random, int blockXPos, int blockZPos, int minVeinSize, int maxVeinSize, int chancesToSpawn, int minY, int maxY) {
-        WorldGenMinable minable = new WorldGenMinable(block, (minVeinSize + random.nextInt(maxVeinSize - minVeinSize)), remove);
+    public void addOreSpawn(Block block, Block remove, World world, Random random, int blockXPos, int blockZPos, int minVeinSize, int maxVeinSize, int chancesToSpawn, int minY, int maxY, int meta) {
+        WorldGenMinable minable;
+        if(meta > 0){
+            minable = new WorldGenMinable(block, meta, (minVeinSize + random.nextInt(maxVeinSize - minVeinSize)), remove);
+        } else {
+            minable = new WorldGenMinable(block, (minVeinSize + random.nextInt(maxVeinSize - minVeinSize)), remove);
+        }
         for (int i = 0; i < chancesToSpawn; i++) {
             int posX = blockXPos + random.nextInt(16);
             int posY = minY + random.nextInt(maxY - minY);

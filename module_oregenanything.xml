@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="module_customoregen" default="compile.module.customoregen">
-  <dirname property="module.customoregen.basedir" file="${ant.file.module_customoregen}"/>
+  <dirname property="module.customoregen.basedir" file="/module_oregenanything.xml"/>
   
   <property name="module.jdk.home.customoregen" value="${project.jdk.home}"/>
   <property name="module.jdk.bin.customoregen" value="${project.jdk.bin}"/>

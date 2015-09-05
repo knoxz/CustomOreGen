@@ -18,8 +18,8 @@ buildscript {
 apply plugin: 'forge'
 
 version = "1.7.10-1.0"
-group= "de.knoxz.customoregen" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "CustomOreGen"
+group= "de.knoxz.oregenanything" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "OreGenAnything"
 
 minecraft {
     version = "1.7.10-10.13.0.1180"

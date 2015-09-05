@@ -1,7 +1,7 @@
-package de.knoxz.customoregen.utility;
+package de.knoxz.oregenanything.utility;
 
 import cpw.mods.fml.common.FMLLog;
-import de.knoxz.customoregen.reference.Reference;
+import de.knoxz.oregenanything.reference.Reference;
 import org.apache.logging.log4j.Level;
 
 public class LogHelper {

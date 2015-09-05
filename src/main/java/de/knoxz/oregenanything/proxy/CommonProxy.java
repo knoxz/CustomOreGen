@@ -1,4 +1,4 @@
-package de.knoxz.customoregen.proxy;
+package de.knoxz.oregenanything.proxy;
 
 public class CommonProxy
 {

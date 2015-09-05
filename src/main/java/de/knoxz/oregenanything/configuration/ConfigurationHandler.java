@@ -1,8 +1,8 @@
-package de.knoxz.customoregen.configuration;
+package de.knoxz.oregenanything.configuration;
 
 import com.google.gson.Gson;
-import de.knoxz.customoregen.utility.LogHelper;
-import de.knoxz.customoregen.utility.Replacer;
+import de.knoxz.oregenanything.utility.LogHelper;
+import de.knoxz.oregenanything.utility.Replacer;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.*;
@@ -15,23 +15,15 @@ public class ConfigurationHandler {
 
     public static ArrayList<Replacer> repl;
     public static void init(File configFile){
-        Configuration configuration = new Configuration(configFile);
 
         String configValue = "";
+        repl = new ArrayList<Replacer>();
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("config/oreGen.json"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            configuration.load();
-            LogHelper.info("LOAD JSON CFG");
-            configValue = configuration.get(Configuration.CATEGORY_GENERAL, "JsonFileName", "config/oreGen.json", "This is the jsonFilePath").getString();
-            LogHelper.debug(configValue);
+            LogHelper.debug("Loading Config");
             repl = new ArrayList<Replacer>();
             Gson gson = new Gson();
-            br = new BufferedReader(new FileReader(configValue));
 
             String line = br.readLine();
 
@@ -42,12 +34,11 @@ public class ConfigurationHandler {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LogHelper.debug("oreGen.json could not be loaded. Maybe it is missing?");
         } finally {
-            configuration.save();
             try {
                 br.close();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
